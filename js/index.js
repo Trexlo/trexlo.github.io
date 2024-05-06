@@ -8,6 +8,20 @@ page.add(animElem);
 page.append(animElem)
 var movementDelta = 150;
 
+var inFocus = true;
+
+function pause() {
+    inFocus = false;
+}
+  
+function play() {
+    inFocus = true;
+}
+
+window.addEventListener("blur", pause);
+window.addEventListener("focus", play);
+
+
 function movement(){
     var a = animElem.css("margin-left");
     var pageWidth = page.css("width");
@@ -234,7 +248,8 @@ function animate() {
     // console.log(eraseLines);
     // console.log(drawnLines);
     requestAnimationFrame(animate);
-
+    if(!inFocus){frameClock.getDelta(); return};
+    if(document.hidden){frameClock.getDelta(); return};
     deltaTime += frameClock.getDelta();
     if(deltaTime<1/60)return;
 
