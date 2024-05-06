@@ -161,44 +161,7 @@ function getHexPoints(size, startPoint = new THREE.Vector2(Math.round(((Math.ran
             };
             scene.add(startPointLine.line);
             lineMap.set({startPoint:startPoint, endPoint: tmp}, startPointLine);
-
-            // var startPointLine = {
-            //     id:THREE.MathUtils.generateUUID(),
-            //     startPoint: startPoint,
-            //     endPoint: tmp,
-            //     lineObject: new THREE.LineCurve(startPoint, tmp),
-            //     line: new THREE.Line( new THREE.BufferGeometry().setFromPoints( [startPoint, startPoint] ), hexLineMaterial ),
-            //     currentLength: 0,
-            //     fullLineLength: startPoint.distanceTo(tmp),
-            //     isDrawing:true,
-            //     isErasing:false,
-            //     state: "wasDrawing",
-            //     wait:10
-            // };
-
-            // scene.add(startPointLine.line);
-            // if(linesToDraw.has(startPoint)){
-            //     if(linesToDraw.get(startPoint).findIndex(l=>l.startPoint.equals(startPointLine.startPoint) && l.endPoint.equals(startPointLine.endPoint)) == -1)
-            //         linesToDraw.get(startPoint).push(startPointLine);
-            // }else{
-            //     linesToDraw.set(startPoint, [startPointLine]);
-            // }
-
         }else if(hexPoints.find(p=> Math.abs(tmp.x-p.x) <= 1 && Math.abs(tmp.y-p.y) <= 1)){
-            // var startPointLine = {
-            //     id:THREE.MathUtils.generateUUID(),
-            //     startPoint: startPoint,
-            //     endPoint: tmp,
-            //     lineObject: new THREE.LineCurve(startPoint, tmp),
-            //     line: new THREE.Line( new THREE.BufferGeometry().setFromPoints( [startPoint, startPoint] ), hexLineMaterial ),
-            //     currentLength: 0,
-            //     fullLineLength: startPoint.distanceTo(tmp),
-            //     isDrawing:true,
-            //     isErasing:false,
-            //     state: "wasDrawing",
-            //     wait:10
-            // };
-            // scene.add(startPointLine.line);
             if(hexPointMap.has(startPoint)){
                 if(!hexPointMap.get(startPoint).find(p=> Math.abs(tmp.x-p.x) <= 1 && Math.abs(tmp.y-p.y) <= 1))
                     hexPointMap.get(startPoint).push(tmp);
@@ -219,12 +182,6 @@ function getHexPoints(size, startPoint = new THREE.Vector2(Math.round(((Math.ran
             };
             scene.add(startPointLine.line);
             lineMap.set({startPoint:startPoint, endPoint: tmp}, startPointLine);
-            // if(linesToDraw.has(startPoint)){
-            //     if(linesToDraw.get(startPoint).findIndex(l=>l.startPoint.equals(startPointLine.startPoint) && l.endPoint.equals(startPointLine.endPoint)) == -1)
-            //         linesToDraw.get(startPoint).push(startPointLine);
-            // }else{
-            //     linesToDraw.set(startPoint, [startPointLine]);
-            // }
         }
     }
     // if(!isStart) return
@@ -304,7 +261,6 @@ function animate() {
     }
     for(var [id, line] of currentLines.entries()){
         if(!line.isDrawing){currentLines.delete(id)}
-        // if(!line.isDrawing && !line.isErasing){currentLines.delete(id)}
     }
     
     var linesToErase=[];
@@ -319,9 +275,7 @@ function animate() {
                 line.line.geometry.setFromPoints([line.startPoint, line.startPoint])
                 line.isErasing = false;
                 line.isDrawing = true;
-                // getEraseLines(line.startPoint);
                 getEraseLines(line.endPoint);
-                // linesToDelete.push(id);
             }else{
                 line.line.geometry.setFromPoints([line.lineObject.getPointAt(line.currentLength/line.fullLineLength), line.startPoint]);
             }
@@ -341,14 +295,12 @@ function animate() {
         getEraseLines()
         state = "erase";
         switchedState = true;
-        // getStartLines(hexPoints[Math.floor(Math.random()*(hexPoints.length-1))]);
     }
     if(currentEraseLines.size == 0 && state == "erase" && !switchedState){
         initialPoint = hexPoints[Math.floor(Math.random()*(hexPoints.length-1))];
         getStartLines()
         state = "draw";
         switchedState = true;
-        // getStartLines(hexPoints[Math.floor(Math.random()*(hexPoints.length-1))]);
     }
     for(var id of linesToDelete){
         currentLines.delete(id);
@@ -357,5 +309,4 @@ function animate() {
     renderer.clearDepth();
     renderer.render(scene, cameraHud);
     deltaTime=0;
-    // console.log("END");
 };
