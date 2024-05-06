@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+}
+#hex-canvas {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    z-index: -10;
+    filter: blur(2px);
+}
+body{
+    background-color: rgb(22, 22, 22);
+    color: rgb(0, 150, 255);
+}
+#page{
+    padding: 10px;
+}
