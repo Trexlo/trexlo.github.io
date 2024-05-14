@@ -6,13 +6,44 @@
     <title>Trexlo's Domain</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 </head>
-<body>
+<body class="use-roboto-mono">
     <div id="hex-canvas"></div>
     <div id="page">    
         <h1>Welcome to my GitHub page</h1>
+        <div id="start-point-div">
+            <h3>Change number of start points</h3>
+            <input type="number" name="" id="start-point-number" value="1">
+        </div>
         <p>This is <span class="bold">W</span>ork <span class="bold">I</span>n <span class="bold">P</span>rogress still</p>
+        <div id="projects">
+            <h2>My Projects</h2>
+        </div>
+        <div hidden id="card-template" class="project-card">
+            <h3 class="card-title"></h2>
+            <div class="card-content">
+                <h4 class="card-small-title">Links</h4>
+                <div class="card-link-container">
+                    <a class="card-link"></a>
+                </div>
+                <h4 class="card-small-title">Description</h4>
+                <p class="card-description"></p>
+                <div class="card-image-container">
+                    <div class="card-image">
+                        <img class="card-image-object">
+                        <p class="card-image-description">
+                    </div>
+                </div>
+                <div class="card-dot-container">
+                    <div class="card-dot"></div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 
@@ -27,4 +58,5 @@
     }
 </script>
 <script src="js/index.js" type="module"></script>
+<script src="js/projectFetcher.js" type="module"></script>
 </html>

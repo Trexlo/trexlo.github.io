@@ -1,58 +1,56 @@
 import "jquery"
 import * as THREE from 'three';
 // console.log(THREE);
-var page =$("#page");
-var animElem = $("<h3>jstestanimation</h3>");
-page.add(animElem);
-// // console.log(animElem);
-page.append(animElem)
-var movementDelta = 150;
+// var page =$("#page");
+// var animElem = $("<h3>jstestanimation</h3>");
+// page.add(animElem);
+// // // console.log(animElem);
+// page.append(animElem)
+// var movementDelta = 150;
 
 var inFocus = true;
-
 function pause() {
     inFocus = false;
 }
-  
 function play() {
     inFocus = true;
 }
-
 window.addEventListener("blur", pause);
 window.addEventListener("focus", play);
 
 
-function movement(){
-    var a = animElem.css("margin-left");
-    var pageWidth = page.css("width");
-    // // console.log(Number.parseInt(pageWidth.substring(0,pageWidth.length-2)));
-    var margin = Number.parseInt(a.substring(0,a.length-2))
-    // // console.log(margin);
-    if(margin > Number.parseInt(pageWidth.substring(0,pageWidth.length-2))) movementDelta = -150;
-    if(margin < 0) movementDelta = 150;
-    var marginNew = margin + movementDelta
-    // // console.log(marginNew);
-    animElem.animate({"margin-left" : marginNew + "px"}, "slow", movement)
-}
-movement();
+// function movement(){
+//     var a = animElem.css("margin-left");
+//     var pageWidth = page.css("width");
+//     // // console.log(Number.parseInt(pageWidth.substring(0,pageWidth.length-2)));
+//     var margin = Number.parseInt(a.substring(0,a.length-2))
+//     // // console.log(margin);
+//     if(margin > Number.parseInt(pageWidth.substring(0,pageWidth.length-2))) movementDelta = -150;
+//     if(margin < 0) movementDelta = 150;
+//     var marginNew = margin + movementDelta
+//     // // console.log(marginNew);
+//     animElem.animate({"margin-left" : marginNew + "px"}, "slow", movement)
+// }
+// movement();
 
-function typewriter(element){
+// function typewriter(element){
 
-    $(element).children().each(function(i, el){
-        var tmpText = $(el).text();
-        // // console.log(tmpText);
-        $(el).text("");
-        var letter = 0;
-        var interval = setInterval(() => {
-            if(tmpText[letter])
-                $(el).text($(el).text()+tmpText[letter++]);
-            else clearInterval(interval);
-        }, 100);
-    })
+//     $(element).children().each(function(i, el){
+//         var tmpText = $(el).text();
+//         // // console.log(tmpText);
+//         $(el).text("");
+//         var letter = 0;
+//         var interval = setInterval(() => {
+//             if(tmpText[letter])
+//                 $(el).text($(el).text()+tmpText[letter++]);
+//             else clearInterval(interval);
+//         }, 100);
+//     })
     
-}
+// }
 
-typewriter(page);
+// typewriter(page);
+
 class VectorMap{
     map=new Map();
     has(key){
@@ -116,6 +114,7 @@ const hexLineMaterial = new THREE.LineBasicMaterial({
 function getHexPoints(size, startPoint = new THREE.Vector2(Math.round(((Math.random()*w - w/2) + Number.EPSILON) * 100) / 100 , Math.round(((Math.random()*h - h/2) + Number.EPSILON) * 100) / 100 ), isStart=true, oldStartPoint = startPoint){
     hexPoints.push(startPoint);
     var points = [];
+    
     var colors = [Math.random(), Math.random(), Math.random()] ;
     for(var i = 0; i<=2; i++){
         var tmp = null;
@@ -211,7 +210,15 @@ var currentLines = new Map();
 var currentEraseLines = new Map();
 var eraseLines = new LineMap();
 var initialPoint = hexPoints[Math.floor(Math.random()*(hexPoints.length-1))];
-function getStartLines(point = initialPoint) { 
+var usedPoints = [];
+function getStartLines(point = initialPoint, cleared = false) { 
+    if(cleared){
+        while(usedPoints.find(x=> x == point) && usedPoints.length!=hexPoints.length){
+            point = hexPoints[Math.floor(Math.random()*(hexPoints.length))];
+        }
+        if(usedPoints.length!=hexPoints.length)
+            usedPoints.push(point);
+    }
     // console.log("getting Start");
     //console.log(lineMap);
     //console.log(point);
@@ -222,7 +229,14 @@ function getStartLines(point = initialPoint) {
         currentLines.set(point.x+"-"+point.y+":"+l.x+"-"+l.y, tmp);
     }
 }
-function getEraseLines(point = initialPoint) { 
+function getEraseLines(point = initialPoint, cleared = false) { 
+    if(cleared){
+        while(usedPoints.find(x=> x == point) && usedPoints.length != hexPoints.length){
+            point = hexPoints[Math.floor(Math.random()*(hexPoints.length))];
+        }
+        if(usedPoints.length!=hexPoints.length)
+            usedPoints.push(point);
+    }
     // console.log("Getting erase");
     //console.log(eraseLines);
     //console.log(point);
@@ -235,6 +249,12 @@ function getEraseLines(point = initialPoint) {
 }
 
 getStartLines()
+
+var numOfStartPoints = 1;
+$('#start-point-number').on('change',(el)=>{
+    console.log(el.target.value);
+    numOfStartPoints=el.target.value;
+})
 // console.log(linesToDraw);
 var lineSpeed = 300;
 var state = "draw";
@@ -307,13 +327,16 @@ function animate() {
     // console.log(state);
     var switchedState = false;
     if(currentLines.size == 0 && state == "draw" && !switchedState){
-        getEraseLines()
+        usedPoints = [];
+        for(let i = 0; i < numOfStartPoints; i++)
+            getEraseLines(hexPoints[Math.floor(Math.random()*(hexPoints.length-1))], true)
         state = "erase";
         switchedState = true;
     }
     if(currentEraseLines.size == 0 && state == "erase" && !switchedState){
-        initialPoint = hexPoints[Math.floor(Math.random()*(hexPoints.length-1))];
-        getStartLines()
+        usedPoints = [];
+        for(let i = 0; i < numOfStartPoints; i++)
+            getStartLines(hexPoints[Math.floor(Math.random()*(hexPoints.length-1))], true)
         state = "draw";
         switchedState = true;
     }

@@ -1,3 +1,16 @@
 .bold{
     font-weight: bold;
 }
+
+.roboto-mono-text-normal {
+  font-family: "Roboto Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 200;
+  font-style: normal;
+}
+
+
+.use-roboto-mono {
+    font-family: "Roboto Mono", monospace;
+    font-optical-sizing: auto;
+}

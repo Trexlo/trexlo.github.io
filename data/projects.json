@@ -1,0 +1,119 @@
+[
+    {
+        "name": "Playable Shooter game",
+        "description": "Github playable version of the web shooter.",
+        "links": [
+            {
+                "text": "Click here to play!",
+                "href": "/games/shooter-game/game.html"
+            },            
+            {
+                "text": "Map editor",
+                "href": "/games/shooter-game/editor.html"
+            },
+            {
+                "text": "Github link - App core",
+                "href": "https://github.com/Trexlo/trexlo.github.io/tree/main/games/shooter-game"
+            },
+            {
+                "text": "Github link - Game server",
+                "href": "https://github.com/Trexlo/game-server"
+            }
+        ],
+        "images": [
+            {
+                "src": "img/webshooter/gameview1.jpg",
+                "description": "Game screen with player HUD, upgrades, points and ammo"
+            },
+            {
+                "src": "img/webshooter/gameview2.jpg",
+                "description": "Enemies attacking the player"
+            },
+            {
+                "src": "img/webshooter/gameview3.jpg",
+                "description": "Roof dissapearing"
+            },
+            {
+                "src": "img/webshooter/gameview4.jpg",
+                "description": "Bullet collision detection"
+            },
+            {
+                "src": "img/webshooter/mapeditor1.jpg",
+                "description": "Map editor screen with options"
+            },
+            {
+                "src": "img/webshooter/mapeditor2.jpg",
+                "description": "Edit building block properties"
+            },
+            {
+                "src": "img/webshooter/mapeditor3.jpg",
+                "description": "Placing blocks and walls"
+            },
+            {
+                "src": "img/webshooter/mapeditor4.jpg",
+                "description": "Generated navigation mesh"
+            }
+        ]
+    },
+    {
+        "name": "Browser Shooter Game",
+        "description": "Multiplayer action game for browsers. Game is rendered with Three.js",
+        "links": [
+            {
+                "text": "Github link - Web app",
+                "href": "https://github.com/Trexlo/web-shooter-WebServer"
+            },
+            {
+                "text": "Github link - Game server",
+                "href": "https://github.com/Trexlo/web-shooter-GameServer"
+            }
+        ],
+        "images": [
+            {
+                "src": "img/webshooter/gameview1.jpg",
+                "description": "Game screen with player HUD, upgrades, points and ammo"
+            },
+            {
+                "src": "img/webshooter/gameview2.jpg",
+                "description": "Enemies attacking the player"
+            },
+            {
+                "src": "img/webshooter/gameview3.jpg",
+                "description": "Roof dissapearing"
+            },
+            {
+                "src": "img/webshooter/gameview4.jpg",
+                "description": "Bullet collision detection"
+            },
+            {
+                "src": "img/webshooter/mapeditor1.jpg",
+                "description": "Map editor screen with options"
+            },
+            {
+                "src": "img/webshooter/mapeditor2.jpg",
+                "description": "Edit building block properties"
+            },
+            {
+                "src": "img/webshooter/mapeditor3.jpg",
+                "description": "Placing blocks and walls"
+            },
+            {
+                "src": "img/webshooter/mapeditor4.jpg",
+                "description": "Generated navigation mesh"
+            }
+        ]
+    },
+    {
+        "name": "Redomat",
+        "description": "Progressive web app for standing in queue, 2 apps on different scopes",
+        "links": [
+            {
+                "text": "Github link",
+                "href": "https://github.com/Trexlo/Redomat"
+            }
+        ],
+        "images": [
+
+        ]
+    }
+]
