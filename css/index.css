@@ -4,7 +4,7 @@
 #hex-canvas {
     width: 100vw;
     height: 100vh;
-    position: absolute;
+    position: fixed;
     z-index: -10;
     filter: blur(2px);
 }
@@ -74,6 +74,7 @@ body{
 }
 .card-link{
     width: fit-content;
+    color: rgb(0, 150, 255);
 }
 .card-link:visited{
     color: rgb(0, 132, 226);
