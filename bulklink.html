@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Link Download</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/bulklink.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+</head>
+<body class="use-roboto-mono">
+    <input type="text" id="link-input">
+    <button id="link-btn">Add link</button>
+    <div id="link-list">
+        
+    </div>
+    <p>Click or copy link to download all</p>
+    <a id="link-generated"></a>
+    <a hidden class="link-content" id="link-content-tmpl" target="_blank"></a>
+</body>
+
+<script type="importmap">
+    {
+        "imports": {
+            "jquery": "https://code.jquery.com/jquery-3.7.1.min.js"
+        }
+    }
+</script>
+<script src="js/bulklink.js" type="module"></script>
+</html>
