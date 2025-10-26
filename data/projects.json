@@ -5,7 +5,7 @@
         "links": [
             {
                 "text": "Click here to play!",
-                "href": "/games/shooter-game/game.html"
+                "href": "/games/shooter-game/hub.html"
             },            
             {
                 "text": "Map editor",
